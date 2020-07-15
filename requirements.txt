@@ -1,1 +1,7 @@
 streamlit==0.63.0
+scikit-learn
+scipy
+numpy
+bitarray
+reportlab
+pandas
