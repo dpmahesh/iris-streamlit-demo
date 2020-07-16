@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 from sklearn import datasets
+from sklearn import metrics
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
 
 st.write("""
 # Simple Iris Flower Prediction App
@@ -32,8 +34,15 @@ iris = datasets.load_iris()
 X = iris.data
 Y = iris.target
 
-clf = RandomForestClassifier()
-clf.fit(X, Y)
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y,test_size=0.3,random_state=42)
+
+clf = RandomForestClassifier(n_estimators=100)
+clf.fit(X_test, Y_test)
+
+y_pred=clf.predict(X_test)
+st.subheader("Model Accuracy")
+st.write(metrics.accuracy_score(Y_test,y_pred,normalize=True))
+
 
 prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
