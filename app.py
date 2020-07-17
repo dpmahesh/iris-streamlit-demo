@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from sklearn import datasets
 from sklearn import metrics
 from sklearn.ensemble import RandomForestClassifier
@@ -42,7 +43,6 @@ clf.fit(X_test, Y_test)
 y_pred=clf.predict(X_test)
 st.subheader("Model Accuracy")
 st.write(metrics.accuracy_score(Y_test,y_pred,normalize=True))
-
 
 prediction = clf.predict(df)
 prediction_proba = clf.predict_proba(df)
